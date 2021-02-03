@@ -1,5 +1,4 @@
 from flask import Flask
-from flask import render_template
 from flask import request
 from flask_cors import CORS
 import pickle
@@ -7,16 +6,9 @@ import pickle
 app = Flask(__name__)
 CORS(app)
 
-# @app.route('/')
-# def home():
-#     return "Try: http://YOUR_AWS_PUBLIC_URL/api/diabetes?x=0,1,2,3,4,5,6,7,8,9"
-
-# serve website
 @app.route('/')
 def home():
-    # notice that "./index.html" actually means "templates/index.html"
-    # this is because render_template() treats 'templates' folder as the root
-    return render_template("./index.html")
+    return "Try: http://YOUR_AWS_PUBLIC_URL/api/diabetes?x=0,1,2,3,4,5,6,7,8,9"
 
 # load the model
 filename = 'finalized_model.sav'
