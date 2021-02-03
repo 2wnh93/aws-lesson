@@ -6,9 +6,16 @@ import pickle
 app = Flask(__name__)
 CORS(app)
 
+# @app.route('/')
+# def home():
+#     return "Try: http://YOUR_AWS_PUBLIC_URL/api/diabetes?x=0,1,2,3,4,5,6,7,8,9"
+
+# serve website
 @app.route('/')
 def home():
-    return "Try: http://<YOUR AWS PUBLIC URL>/api/diabetes?x=0,1,2,3,4,5,6,7,8,9"
+    # notice that "./index.html" actually means "templates/index.html"
+    # this is because render_template() treats 'templates' folder as the root
+    return render_template("./index.html")
 
 # load the model
 filename = 'finalized_model.sav'
@@ -16,7 +23,7 @@ with open(filename, 'rb') as file:
     model = pickle.load(file)
 
 # predicts diabetes
-# expected uri: http://<YOUR AWS PUBLIC URL>/api/diabetes?x=0,1,2,3,4,5,6,7,8,9
+# expected uri: http://YOUR_AWS_PUBLIC_URL/api/diabetes?x=0,1,2,3,4,5,6,7,8,9
 @app.route('/api/diabetes')
 def diabetes():
     # get the parameter named "x"
